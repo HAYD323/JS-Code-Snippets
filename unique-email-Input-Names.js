@@ -33,14 +33,17 @@
             var time = Date.now()
             let _$fields = document.querySelector('[name="$fields"]');
             _fieldElements.forEach( ele => {
-               let splitStr = _$fields.value.split(ele.name);
+               if (_$fields) {
+                let splitStr = _$fields.value.split(ele.name);
+               }
                if (ele.name.indexOf('__$') >= 0) {
                   ele.name = ele.name.split('__$')[0]
                }
                ele.name = `${ele.name}__$${time}`;
-               splitStr[0] += ele.name;
-               _$fields.value = splitStr.join('')
-
+               if (_$fields) {
+                   splitStr[0] += ele.name;
+                    _$fields.value = splitStr.join('')
+               }
             });
 
          return _fieldElements
